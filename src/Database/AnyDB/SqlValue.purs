@@ -9,6 +9,7 @@ import Data.Int
 import Data.Maybe
 import Data.Date (Date())
 import Node.Buffer (Buffer())
+import DOM.File.Types (Blob())
 
 foreign import data SqlValue :: *
 
@@ -25,6 +26,9 @@ instance isSqlValueInt :: IsSqlValue Int where
   toSql = unsafeToSqlValue <<< toNumber
 
 instance isSqlValueBuffer :: IsSqlValue Buffer where
+  toSql = unsafeToSqlValue
+
+instance isSqlValueBlob :: IsSqlValue Blob where
   toSql = unsafeToSqlValue
 
 instance isSqlValueMaybe :: (IsSqlValue a) => IsSqlValue (Maybe a) where
